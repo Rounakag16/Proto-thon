@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 p-6">
+    <div class="max-w-2xl mx-auto bg-white shadow-lg rounded-lg p-6">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-bold">Welcome <%= username %> (Business)</h2>
+            <form action="/logout" method="GET">
+                <button type="submit"
+                    class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">Logout</button>
+            </form>
+        </div>
+
+        <h3 class="text-xl font-semibold mb-2">Submit New Product</h3>
+        <form action="/business/submit" method="post" class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium">Product Name</label>
+                <input type="text" name="name" required
+                    class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+            <div>
+                <label class="block text-sm font-medium">Description</label>
+                <textarea name="description" required
+                    class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+            </div>
+            <div>
+                <label class="block text-sm font-medium">Sustainability Info</label>
+                <textarea name="sustainabilityInfo" required
+                    class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+            </div>
+
+            <!-- New Sustainability Fields -->
+            <div>
+                <label class="block text-sm font-medium">Materials</label>
+                <select name="materials"
+                    class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <option value="eco-friendly">Eco-friendly</option>
+                    <option value="partially sustainable">Partially Sustainable</option>
+                    <option value="non-sustainable">Non-Sustainable</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-medium">Energy Usage (kWh)</label>
+                <input type="number" name="energyUsage" required
+                    class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+            <div>
+                <label class="block text-sm font-medium">Carbon Footprint (kg CO2)</label>
+                <input type="number" name="carbonFootprint" required
+                    class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+            <div>
+                <label class="block text-sm font-medium">Recyclability</label>
+                <select name="recyclability"
+                    class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <option value="true">Recyclable</option>
+                    <option value="false">Not Recyclable</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-medium">Ethical Sourcing</label>
+                <select name="ethicalSourcing"
+                    class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <option value="true">Ethically Sourced</option>
+                    <option value="false">Not Ethically Sourced</option>
+                </select>
+            </div>
+
+            <button type="submit"
+                class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">Submit
+                Product</button>
+        </form>
+    </div>
+</body>
+
+</html> 

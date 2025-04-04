@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 p-6">
+    <div class="max-w-6xl mx-auto bg-white shadow-lg rounded-lg p-6">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-bold">Admin Dashboard</h2>
+            <form action="/logout" method="GET">
+                <button type="submit"
+                    class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">Logout</button>
+            </form>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Pending Products</h3>
+        <% if (products.length===0) { %>
+            <p class="text-gray-600">No pending products.</p>
+            <% } else { %>
+                <table class="w-full border-collapse border border-gray-300 text-sm">
+                    <thead>
+                        <tr class="bg-gray-200 text-left">
+                            <th class="p-2 border">Product Name</th>
+                            <th class="p-2 border">Description</th>
+                            <th class="p-2 border">Sustainability Info</th>
+                            <th class="p-2 border">Materials</th>
+                            <th class="p-2 border">Energy Usage (kWh)</th>
+                            <th class="p-2 border">Carbon Footprint (kg CO2)</th>
+                            <th class="p-2 border">Recyclable</th>
+                            <th class="p-2 border">Ethical Sourcing</th>
+                            <th class="p-2 border">Submitted By</th>
+                            <th class="p-2 border">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% products.forEach(function(product) { %>
+                            <tr class="text-center bg-white border">
+                                <td class="p-2 border">
+                                    <%= product.name %>
+                                </td>
+                                <td class="p-2 border">
+                                    <%= product.description %>
+                                </td>
+                                <td class="p-2 border">
+                                    <%= product.sustainabilityInfo %>
+                                </td>
+                                <td class="p-2 border">
+                                    <%= product.materials %>
+                                </td>
+                                <td class="p-2 border">
+                                    <%= product.energyUsage %> kWh
+                                </td>
+                                <td class="p-2 border">
+                                    <%= product.carbonFootprint %> kg CO2
+                                </td>
+                                <td class="p-2 border">
+                                    <%= product.recyclability ? "Yes" : "No" %>
+                                </td>
+                                <td class="p-2 border">
+                                    <%= product.ethicalSourcing ? "Yes" : "No" %>
+                                </td>
+                                <td class="p-2 border">
+                                    <%= product.submittedBy %>
+                                </td>
+                                <td class="p-2 border">
+                                    <form action="/admin/approve" method="post" class="inline">
+                                        <input type="hidden" name="productId" value="<%= product.id %>">
+                                        <button type="submit"
+                                            class="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600">Approve</button>
+                                    </form>
+                                    <form action="/admin/reject" method="post" class="inline">
+                                        <input type="hidden" name="productId" value="<%= product.id %>">
+                                        <button type="submit"
+                                            class="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600">Reject</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+                <% } %>
+    </div>
+</body>
+
+</html>

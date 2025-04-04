@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@zxing/library@latest"></script>
+    <script src="/js/scanner.js" defer></script>
+</head>
+
+<body class="bg-gray-100 p-6">
+    <div class="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-6">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-bold">User Dashboard</h2>
+            <form action="/" method="GET">
+                <button type="submit"
+                    class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">Logout</button>
+            </form>
+        </div>
+
+        <h3 class="text-xl font-semibold mb-2">Barcode Scanner</h3>
+        <div class="flex space-x-2 mb-4">
+            <input type="file" id="barcodeInput" accept="image/*" class="border p-2 rounded-lg w-full">
+            <button id="readBarcodeBtn"
+                class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Read</button>
+        </div>
+        <div class="flex space-x-2">
+            <input type="text" id="barcodeText" placeholder="Scanned barcode content"
+                class="border p-2 rounded-lg w-full">
+            <button id="searchBtn"
+                class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Search</button>
+        </div>
+
+        <h3 class="text-xl font-semibold mt-6 mb-2">Approved Products</h3>
+        <% if (approvedProducts.length===0) { %>
+            <p class="text-gray-600">No approved products yet.</p>
+            <% } else { %>
+                <ul class="list-disc pl-6">
+                    <% approvedProducts.forEach(function(product) { %>
+                        <li>
+                            <a href="/product/<%= product.id %>" class="text-blue-500 hover:underline">
+                                <%= product.name %>
+                            </a>
+                        </li>
+                        <% }) %>
+                </ul>
+                <% } %>
+
+                    <!-- Map Link Section -->
+                    <div class="mt-6 text-center">
+                        <a href="/map" class="bg-yellow-500 text-white px-6 py-2 rounded-lg hover:bg-yellow-600">Find
+                            Sustainable Businesses</a>
+                    </div>
+    </div>
+</body>
+
+</html>
